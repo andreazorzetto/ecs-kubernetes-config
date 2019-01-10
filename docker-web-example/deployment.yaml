@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: docker-web-example
+  name: SERVICE_NAME
   labels:
-    app: docker-web-example
+    app: SERVICE_NAME
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: docker-web-example
+      app: SERVICE_NAME
   template:
     metadata:
       labels:
-        app: docker-web-example
+        app: SERVICE_NAME
     spec:
       containers:
-        - name: docker-web-example
-          image: docker-web-example:latest
+        - name: SERVICE_NAME
+          image: SERVICE_NAME:IMAGE_VERSION"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -26,11 +26,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: docker-web-example
+  name: SERVICE_NAME
 spec:
   type: ClusterIP
   selector:
-    app: docker-web-example
+    app: SERVICE_NAME
   ports:
     - name: http
       port: 80
